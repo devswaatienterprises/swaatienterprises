@@ -1,0 +1,12 @@
+{
+  "name": "swaati-enterprises-system",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:website": "npm --prefix website run dev",
+    "dev:crm": "npm --prefix crm run dev",
+    "dev:backend": "npm --prefix backend run dev",
+    "build:website": "npm --prefix website run build",
+    "build:crm": "npm --prefix crm run build"
+  }
+}
