@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'About Us - Swaati Enterprises',
+  title: 'About - Swaati Enterprises',
   description: 'Learn about our journey, values, and commitment to delivering quality construction chemical solutions.',
 };
 
@@ -9,9 +9,9 @@ export default function AboutPage() {
   return (
     <>
       {/* Page Header */}
-      <section className="hero-gradient py-24 relative overflow-hidden">
+      <section className="hero-gradient py-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl -translate-y-1/2"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
         </div>
         <div className="max-w-7xl mx-auto px-6 relative">
           <div className="max-w-3xl">
@@ -228,12 +228,14 @@ export default function AboutPage() {
           <p className="text-royal-200 mb-8 max-w-2xl mx-auto">
             Get in touch with our team to discuss your project requirements and explore the right construction chemical solutions.
           </p>
-          <Link
-            href="/contact"
+          <a
+            href="https://wa.me/919371755337?text=Hello%20Swaati%20Enterprises%2C%20I%20would%20like%20to%20get%20a%20quote."
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-white text-royal-700 px-8 py-4 rounded-lg font-semibold hover:bg-royal-50 transition-all inline-block"
           >
-            Get in Touch
-          </Link>
+            Get a Quote
+          </a>
         </div>
       </section>
     </>

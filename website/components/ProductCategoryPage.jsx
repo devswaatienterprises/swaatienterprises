@@ -1,15 +1,48 @@
+'use client';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
+import ProductCard from '@/components/ProductCard';
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api/v1';
 
 export default function ProductCategoryPage({ title, description, products }) {
+  const [downloadToast, setDownloadToast] = useState('');
+
+  const handleDownloadDatasheet = async (productName) => {
+    try {
+      setDownloadToast(`Fetching latest datasheet for ${productName} from Swaati CRM single source of truth...`);
+      // Attempt to retrieve active datasheet metadata from public endpoint
+      const res = await fetch(`${API_BASE_URL}/public/products/${encodeURIComponent(productName)}/datasheet`);
+      if (res.ok) {
+        const json = await res.json();
+        if (json?.data?.fileUrl) {
+          window.open(json.data.fileUrl, '_blank');
+        }
+      }
+    } catch (err) {
+      // Fallback
+    }
+    setTimeout(() => setDownloadToast(''), 4000);
+  };
+
   return (
     <>
-      {/* Header */}
-      <section className="hero-gradient py-24 relative overflow-hidden">
+      {/* Toast */}
+      {downloadToast && (
+        <div className="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-3.5 rounded-xl shadow-2xl border border-slate-700 text-xs font-semibold flex items-center gap-2">
+          <span>📄 {downloadToast}</span>
+        </div>
+      )}
+
+      {/* Category Header */}
+      <section className="hero-gradient py-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative">
+          {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-royal-300 text-sm mb-4">
             <Link href="/" className="hover:text-white transition-colors">
               Home
@@ -34,63 +67,9 @@ export default function ProductCategoryPage({ title, description, products }) {
       {/* Products List */}
       <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {products.map((product, idx) => (
-              <div key={idx} className="product-card card-hover bg-white rounded-xl p-8 shadow-sm">
-                <div className="grid lg:grid-cols-3 gap-10 items-start">
-                  {/* LEFT CONTENT */}
-                  <div className="lg:col-span-2">
-                    <h3 className="text-2xl font-bold text-slate-800 mb-3">{product.name}</h3>
-                    <p className="text-slate-600 mb-6">{product.description}</p>
-
-                    <div className="grid md:grid-cols-2 gap-6">
-                      {product.features && (
-                        <div>
-                          <h4 className="font-semibold text-slate-700 mb-3">Key Features</h4>
-                          <ul className="space-y-2 text-sm text-slate-600">
-                            {product.features.map((feat, fIdx) => (
-                              <li key={fIdx}>{feat}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-
-                      {product.applications && (
-                        <div>
-                          <h4 className="font-semibold text-slate-700 mb-3">Applications</h4>
-                          <ul className="space-y-2 text-sm text-slate-600">
-                            {product.applications.map((app, aIdx) => (
-                              <li key={aIdx}>{app}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* RIGHT BUTTON PANEL */}
-                  <div className="flex flex-col gap-3 lg:border-l lg:pl-8 border-slate-200">
-                    <a
-                      href="#"
-                      className="btn-primary text-white px-6 py-3 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 text-center"
-                    >
-                      Download Datasheet
-                    </a>
-                    <Link
-                      href={`/contact?product=${encodeURIComponent(product.name)}`}
-                      className="btn-secondary text-royal-600 px-6 py-3 rounded-lg font-semibold text-sm flex items-center justify-center gap-2"
-                    >
-                      Request Quotation
-                    </Link>
-                    <a
-                      href="tel:+919370011133"
-                      className="border border-slate-300 text-slate-700 px-6 py-3 rounded-lg font-semibold text-sm text-center hover:bg-slate-50 transition-colors flex items-center justify-center gap-2"
-                    >
-                      Call Now
-                    </a>
-                  </div>
-                </div>
-              </div>
+              <ProductCard key={product.id || idx} product={product} />
             ))}
           </div>
         </div>
@@ -105,12 +84,14 @@ export default function ProductCategoryPage({ title, description, products }) {
           <p className="text-royal-200 mb-8 max-w-2xl mx-auto">
             Our engineering team is available to assist you with technical recommendations and material selection.
           </p>
-          <Link
-            href="/contact"
+          <a
+            href="https://wa.me/919371755337?text=Hello%20Swaati%20Enterprises%2C%20I%20would%20like%20to%20get%20a%20quote."
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-white text-royal-700 px-8 py-4 rounded-lg font-semibold hover:bg-royal-50 transition-all inline-block"
           >
             Get Technical Support
-          </Link>
+          </a>
         </div>
       </section>
     </>

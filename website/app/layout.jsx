@@ -1,5 +1,5 @@
+import Script from 'next/script';
 import './globals.css';
-import TopBar from '@/components/TopBar';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -29,10 +29,26 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
+        {/* Google tag (gtag.js) - Google Analytics 4 */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-7N04DTBCG1"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+        >
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-7N04DTBCG1');
+          `}
+        </Script>
       </head>
       <body className="h-full">
         <div className="app-wrapper bg-white" id="app">
-          <TopBar />
           <Navbar />
           <main id="pageContent">{children}</main>
           <Footer />

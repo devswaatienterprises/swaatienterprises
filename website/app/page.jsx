@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import ProductSearch from '@/components/ProductSearch';
 
 export const metadata = {
   title: 'Swaati Enterprises - Construction Chemical & Engineering Solutions',
@@ -9,7 +10,7 @@ export default function HomePage() {
   const solutions = [
     {
       name: 'Waterproofing Systems',
-      link: '/products-waterproofing_systems',
+      link: '/products/waterproofing',
       icon: (
         <path
           strokeLinecap="round"
@@ -22,7 +23,7 @@ export default function HomePage() {
     },
     {
       name: 'Concrete Admixtures',
-      link: '/products-concrete_admixtures',
+      link: '/products/concrete-admixtures',
       icon: (
         <path
           strokeLinecap="round"
@@ -34,8 +35,8 @@ export default function HomePage() {
       desc: 'Admixtures that improve concrete workability, strength and long-term durability. Widely used in ready-mix plants, commercial buildings and infrastructure projects.',
     },
     {
-      name: 'Epoxy Flooring',
-      link: '/products-epoxy_systems',
+      name: 'Flooring & Surface Hardening',
+      link: '/products/flooring-and-surface-hardening',
       icon: (
         <path
           strokeLinecap="round"
@@ -44,11 +45,11 @@ export default function HomePage() {
           d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
         />
       ),
-      desc: 'Seamless, high-strength epoxy flooring for industrial and commercial environments. Commonly installed in factories, warehouses, hospitals, laboratories and parking areas.',
+      desc: 'Seamless, high-strength floor hardeners and leveling compounds for industrial and commercial environments.',
     },
     {
-      name: 'Structural Repair & Strengthening',
-      link: '/products-structural_repair',
+      name: 'Structural Repair',
+      link: '/products/structural-repair',
       icon: (
         <path
           strokeLinecap="round"
@@ -57,11 +58,11 @@ export default function HomePage() {
           d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
         />
       ),
-      desc: 'Repair solutions for damaged concrete structures. Includes repair mortars, bonding agents, injection systems and strengthening technologies.',
+      desc: 'Repair solutions for damaged concrete structures. Includes repair mortars, bonding agents, micro-concretes and strengthening technologies.',
     },
     {
       name: 'Grouts & Anchors',
-      link: '/products-grouts_anchors',
+      link: '/products/grouts',
       icon: (
         <path
           strokeLinecap="round"
@@ -70,11 +71,11 @@ export default function HomePage() {
           d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
         />
       ),
-      desc: 'Precision grouting and anchoring products used for machinery foundations and structural fixing. Provides strong load transfer and reliable structural support.',
+      desc: 'Precision grouting and anchoring products used for machinery foundations and structural fixing with high load transfer.',
     },
     {
-      name: 'Industrial Solutions',
-      link: '/products-industrial_solution',
+      name: 'Geotextiles & Reinforcement',
+      link: '/products/geotextiles',
       icon: (
         <>
           <path
@@ -91,7 +92,7 @@ export default function HomePage() {
           />
         </>
       ),
-      desc: 'Protective coatings and maintenance solutions designed for harsh industrial environments exposed to chemicals, moisture and heavy usage.',
+      desc: 'Non-woven geotextiles and synthetic micro-fibers engineered for filtration, drainage, separation, and crack reduction.',
     },
   ];
 
@@ -102,7 +103,7 @@ export default function HomePage() {
     },
     {
       title: 'Proven Products',
-      desc: 'We supply products that are widely used across construction and infrastructure projects.',
+      desc: 'We supply certified products that are widely used across construction and infrastructure projects.',
     },
     {
       title: 'Site Support',
@@ -122,16 +123,35 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <section className="hero-gradient relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-royal-400 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+        {/* Background Video Layer */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="w-full h-full object-cover object-center opacity-25 scale-105"
+          >
+            <source src="/images/swaati_enterprises_video-1.mp4" type="video/mp4" />
+          </video>
         </div>
-        <div className="max-w-7xl mx-auto px-6 py-24 lg:py-32 relative">
+
+        {/* Matching About Us Royal Blue Gradient Overlay */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-br from-[#0a1142]/85 via-[#1e2a8f]/75 to-[#152070]/85 pointer-events-none"></div>
+
+        {/* Ambient Glow matching About Us Hero */}
+        <div className="absolute inset-0 z-[2] pointer-events-none">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 opacity-15"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#1e2a8f] rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2 opacity-25"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 py-20 lg:py-28 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-6" id="hero-headline">
                 Construction <br />
-                Chemicals & <br />
+                Chemicals &amp; <br />
                 Engineering <br />
                 Solutions <br />
                 You Can Rely On!
@@ -146,12 +166,14 @@ export default function HomePage() {
                 >
                   Explore Products
                 </Link>
-                <Link
-                  href="/contact"
-                  className="bg-royal-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-royal-700 transition-all transform hover:scale-105 shadow-lg"
+                <a
+                  href="https://wa.me/919371755337?text=Hello%20Swaati%20Enterprises%2C%20I%20would%20like%20to%20get%20a%20quote."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-royal-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-royal-700 transition-all transform hover:scale-105 shadow-lg inline-block"
                 >
                   Request Quotation
-                </Link>
+                </a>
               </div>
             </div>
             <div className="hidden lg:block animate-fade-in delay-200">
@@ -167,8 +189,8 @@ export default function HomePage() {
                       <div className="text-royal-200 text-sm">Projects Completed</div>
                     </div>
                     <div className="bg-white/10 rounded-xl p-6 text-center">
-                      <div className="text-4xl font-bold text-white mb-2">500+</div>
-                      <div className="text-royal-200 text-sm">Products Range</div>
+                      <div className="text-4xl font-bold text-white mb-2">240+</div>
+                      <div className="text-royal-200 text-sm">Certified Products</div>
                     </div>
                     <div className="bg-white/10 rounded-xl p-6 text-center">
                       <div className="text-4xl font-bold text-white mb-2">50+</div>
@@ -182,13 +204,86 @@ export default function HomePage() {
           </div>
         </div>
         {/* Wave Divider */}
-        <div className="absolute bottom-0 left-0 right-0">
+        <div className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none">
           <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
               fill="white"
             />
           </svg>
+        </div>
+      </section>
+
+      {/* Product Search & Quick Finder Section */}
+      <section className="py-12 bg-white relative z-20">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 lg:p-10 shadow-sm text-center">
+            <span className="text-royal-600 font-semibold text-xs tracking-wider uppercase">
+              Quick Product Finder
+            </span>
+            <h2 className="text-2xl lg:text-3xl font-bold text-slate-800 mt-2 mb-3">
+              Find the Right Product
+            </h2>
+            <p className="text-slate-600 text-sm max-w-xl mx-auto mb-6 leading-relaxed">
+              Search across 240+ construction chemicals, waterproofing solutions, grouts, and partner brands.
+            </p>
+
+            {/* Prominent Search Bar with Manufacturer & Category Filters */}
+            <div className="max-w-2xl mx-auto mb-4 text-left">
+              <ProductSearch
+                placeholder="Search products..."
+                showFilters={true}
+                showDirectResults={true}
+              />
+            </div>
+
+            {/* Quick Explore Tags & Direct Link */}
+            <div className="flex flex-wrap items-center justify-center gap-2 pt-3 text-xs">
+              <span className="text-slate-400 font-medium">Quick categories:</span>
+              <Link
+                href="/products?category=Waterproofing"
+                className="bg-white hover:bg-royal-50 text-slate-700 hover:text-royal-700 px-3 py-1.5 rounded-lg border border-slate-200 font-medium transition-colors"
+              >
+                Waterproofing
+              </Link>
+              <Link
+                href="/products?company=Penetron"
+                className="bg-white hover:bg-royal-50 text-slate-700 hover:text-royal-700 px-3 py-1.5 rounded-lg border border-slate-200 font-medium transition-colors"
+              >
+                Penetron
+              </Link>
+              <Link
+                href="/products?company=Fosroc"
+                className="bg-white hover:bg-royal-50 text-slate-700 hover:text-royal-700 px-3 py-1.5 rounded-lg border border-slate-200 font-medium transition-colors"
+              >
+                Fosroc
+              </Link>
+              <Link
+                href="/products?category=Structural%20Repair"
+                className="bg-white hover:bg-royal-50 text-slate-700 hover:text-royal-700 px-3 py-1.5 rounded-lg border border-slate-200 font-medium transition-colors"
+              >
+                Structural Repair
+              </Link>
+              <Link
+                href="/products?category=Grouts"
+                className="bg-white hover:bg-royal-50 text-slate-700 hover:text-royal-700 px-3 py-1.5 rounded-lg border border-slate-200 font-medium transition-colors"
+              >
+                Grouts
+              </Link>
+            </div>
+
+            <div className="mt-6 pt-6 border-t border-slate-200/60 flex items-center justify-center">
+              <Link
+                href="/products"
+                className="inline-flex items-center gap-2 text-royal-600 hover:text-royal-800 font-semibold text-sm transition-colors"
+              >
+                <span>View Full Product Catalogue</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -228,7 +323,7 @@ export default function HomePage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-800">Fast & Reliable Supply</h4>
+                    <h4 className="font-semibold text-slate-800">Fast &amp; Reliable Supply</h4>
                     <p className="text-sm text-slate-500">Quick Product Availability</p>
                   </div>
                 </div>
@@ -324,8 +419,8 @@ export default function HomePage() {
                 <div className="text-royal-200">Projects Delivered</div>
               </div>
               <div className="bg-slate-100 p-8 rounded-xl">
-                <div className="text-4xl font-bold text-royal-600 mb-2">500+</div>
-                <div className="text-slate-600">Products Range</div>
+                <div className="text-4xl font-bold text-royal-600 mb-2">240+</div>
+                <div className="text-slate-600">Certified Products</div>
               </div>
               <div className="bg-slate-100 p-8 rounded-xl">
                 <div className="text-4xl font-bold text-royal-600 mb-2">20+</div>
@@ -353,20 +448,22 @@ export default function HomePage() {
                 href="tel:+919370011133"
                 className="bg-white text-royal-700 px-8 py-4 rounded-lg font-semibold hover:bg-royal-50 transition-all flex items-center gap-2"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg width="20" height="20" className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
                 Call Now
               </a>
-              <Link
-                href="/contact"
+              <a
+                href="https://wa.me/919371755337?text=Hello%20Swaati%20Enterprises%2C%20I%20would%20like%20to%20get%20a%20quote."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-royal-700 transition-all flex items-center gap-2"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg width="20" height="20" className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
                 Get Quote
-              </Link>
+              </a>
             </div>
           </div>
         </div>

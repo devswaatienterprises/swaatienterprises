@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "dev": "node scripts/dev.js",
+    "dev:all": "node scripts/dev.js",
     "dev:website": "npm --prefix website run dev",
+    "dev:sems": "npm --prefix crm run dev",
     "dev:crm": "npm --prefix crm run dev",
     "dev:backend": "npm --prefix backend run dev",
+    "build": "npm run build:website && npm run build:crm",
     "build:website": "npm --prefix website run build",
+    "build:sems": "npm --prefix crm run build",
     "build:crm": "npm --prefix crm run build"
   }
 }

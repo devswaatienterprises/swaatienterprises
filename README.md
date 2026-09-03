@@ -1,6 +1,6 @@
-# Swaati Enterprises - Enterprise System Architecture
+# Swaati Enterprises - Enterprise System Architecture & SEMS
 
-This repository contains the production-ready modular architecture for **Swaati Enterprises**, consisting of the **Public Website**, **Internal CRM**, **Backend API**, and **Shared Libraries**.
+This repository contains the modular architecture for **Swaati Enterprises**, consisting of the **Public Website**, **SEMS (Swaati Enterprises Management System - Task Management & CRM)**, **Backend API**, and **Shared Libraries**.
 
 ---
 
@@ -11,9 +11,10 @@ Swaati Enterprises
 │
 ├── Public Website (website/)
 │   └── Next.js + React (Port 3000)
+│   └── Direct route /sems proxies to SEMS CRM
 │
-├── Internal CRM (crm/)
-│   └── Next.js + React (Port 3001)
+├── SEMS CRM & Task Management (crm/)
+│   └── Next.js + React (Port 3001, BasePath: /sems)
 │
 ├── Backend API (backend/)
 │   └── Node.js + Express + PostgreSQL (Port 4000)
@@ -24,39 +25,41 @@ Swaati Enterprises
 
 ---
 
-## 🚀 Applications & Ports
+## 🚀 Applications & URLs
 
-| Application | Technology Stack | Local Development URL | Directory |
-| :--- | :--- | :--- | :--- |
-| **Public Website** | Next.js 14, React, Tailwind CSS | [http://localhost:3000](http://localhost:3000) | `website/` |
-| **Internal CRM** | Next.js 14, React, Tailwind CSS | [http://localhost:3001](http://localhost:3001) | `crm/` |
-| **Backend API** | Node.js, Express, PostgreSQL | [http://localhost:4000](http://localhost:4000) | `backend/` |
+| Application | Technology Stack | Local URL | Direct Port | Directory |
+| :--- | :--- | :--- | :--- | :--- |
+| **Public Website** | Next.js 14, React, Tailwind CSS | [http://localhost:3000](http://localhost:3000) | `3000` | `website/` |
+| **SEMS Portal (via Website)** | Next.js 14, Proxy Route | [http://localhost:3000/sems](http://localhost:3000/sems) | `3000` -> `3001` | `website/` & `crm/` |
+| **SEMS Portal (Direct)** | Next.js 14, React, Tailwind CSS | [http://localhost:3001/sems](http://localhost:3001/sems) | `3001` | `crm/` |
+| **Backend API** | Node.js, Express, PostgreSQL | [http://localhost:4000](http://localhost:4000) | `4000` | `backend/` |
 
 ---
 
 ## 🛠 Local Development Commands
 
-You can run each application independently:
+### 🌟 Run Everything (Website + SEMS)
+```bash
+npm run dev
+```
 
-### 1. Public Website
+### Run Individual Apps:
+
+#### 1. Public Website
 ```bash
 npm run dev:website
-# OR
-cd website && npm run dev
 ```
 
-### 2. Internal CRM
+#### 2. SEMS Portal / CRM
 ```bash
-npm run dev:crm
+npm run dev:sems
 # OR
-cd crm && npm run dev
+npm run dev:crm
 ```
 
-### 3. Backend API
+#### 3. Backend API
 ```bash
 npm run dev:backend
-# OR
-cd backend && npm run dev
 ```
 
 ---
