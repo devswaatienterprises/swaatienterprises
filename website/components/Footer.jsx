@@ -15,7 +15,6 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <div className="grid grid-cols-2 gap-x-6 text-sm">
               <ul className="space-y-3">
                 <li>
@@ -56,7 +55,6 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-4 text-sm text-slate-300">
               <li>
                 📍 Office No. 2, Building No. D,<br />
