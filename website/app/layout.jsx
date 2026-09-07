@@ -7,6 +7,9 @@ export const metadata = {
   metadataBase: new URL('https://swaatienterprises.com'),
   title: 'Swaati Enterprises - Construction Chemical & Engineering Solutions',
   description: 'Trusted partner for Waterproofing Systems, Concrete Admixtures, Epoxy Flooring, Structural Repair and Industrial Solutions.',
+  verification: {
+    google: 'gmuK6qy6-8wjCItlcsa_agDTLgdCxziO-INGHW3Q3_g',
+  },
   icons: {
     icon: [
       { url: '/images/favicon.ico' },
@@ -21,6 +24,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-97BXWV7CFC';
+
   return (
     <html lang="en" className="h-full">
       <head>
@@ -31,22 +36,26 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
         {/* Google tag (gtag.js) - Google Analytics 4 */}
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-7N04DTBCG1"
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-        >
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+        {gaId && (
+          <>
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+            />
+            <Script
+              id="google-analytics"
+              strategy="afterInteractive"
+            >
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
 
-            gtag('config', 'G-7N04DTBCG1');
-          `}
-        </Script>
+                gtag('config', '${gaId}');
+              `}
+            </Script>
+          </>
+        )}
       </head>
       <body className="h-full">
         <div className="app-wrapper bg-white" id="app">

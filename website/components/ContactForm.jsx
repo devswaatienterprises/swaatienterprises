@@ -37,7 +37,7 @@ export default function ContactForm() {
       if (res.ok) {
         setStatus({
           state: 'success',
-          message: 'Thank you! Your requirement has been registered with Swaati Enterprises CRM. Our technical engineer will call you shortly.',
+          message: 'Thank you! Your requirement has been registered with Swaati Enterprises. Our technical engineer will contact you shortly.',
         });
         setFormData({
           name: '',
@@ -48,17 +48,16 @@ export default function ContactForm() {
           message: '',
         });
       } else {
-        // Fallback demo response
+        const errorData = await res.json().catch(() => null);
         setStatus({
-          state: 'success',
-          message: 'Thank you! Your enquiry has been received and routed directly to our operations team.',
+          state: 'error',
+          message: errorData?.message || 'Unable to submit your enquiry at this moment. Please call us directly at +91 93700 11133.',
         });
       }
     } catch (err) {
-      // Local fallback in case backend is offline
       setStatus({
-        state: 'success',
-        message: 'Thank you! Your enquiry has been received. Our technical engineer will get back to you shortly.',
+        state: 'error',
+        message: 'Network error: Unable to reach the server. Please check your internet connection or call +91 93700 11133.',
       });
     }
   };
@@ -68,6 +67,12 @@ export default function ContactForm() {
       {status.state === 'success' && (
         <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-sm font-semibold flex items-center gap-2">
           <span>✓ {status.message}</span>
+        </div>
+      )}
+
+      {status.state === 'error' && (
+        <div className="p-4 bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-sm font-semibold flex items-center gap-2">
+          <span>⚠ {status.message}</span>
         </div>
       )}
 
